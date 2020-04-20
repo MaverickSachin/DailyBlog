@@ -13,6 +13,7 @@
 
     <title>
         {% block title %}
+          Daily Blog
         {% endblock title %}
     </title>
   </head>
@@ -40,8 +41,8 @@
 
             <div class="navbar-nav">
 
-              <a class="nar-item nav-link" href="#">Log In</a>
-              <a class="nav-item nav-link" href="#">Sign Up</a>
+              <a class="nar-item nav-link" href="{{ url_for('login') }}">Log In</a>
+              <a class="nav-item nav-link" href="{{ url_for('signup') }}">Sign Up</a>
 
             </div>
 
@@ -58,6 +59,16 @@
       <div class="row">
 
         <div class="col-md-8">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
 
           {% block content %}
           {% endblock content %}
