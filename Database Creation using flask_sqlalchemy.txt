@@ -1,0 +1,28 @@
+Creating database from the flask_sqlalchemy:
+
+>> python
+>> from app import app
+>> from models import db, User, Post
+
+>> with app.app_context():
+>> ...  db.create_all()
+>> ...	user_1 = User(username='Sachin', email='Sachin@gmail.com', password='password123')
+>> ...	db.session.add(user_1)
+>> ...	db.session.commit()
+>> ...  User.query.all()
+>> ...  User.query.first()
+>> ...  User.query.filter_by(username='Sachin').all()
+>> ...  User.query.filter_by(username='Sachin').first()
+>> ...  user = User.query.filter_by(username='Sachin').first()
+>> ...  user.id
+1
+>> ...  user = User.query.get(1)
+>> ...  db.drop_all()
+
+
+user_1 = User(username='Steve Smith', email='SteveSmith@gmail.com', password='password123')
+user_2 = User(username='David Warner', email='DavidWarner@gmail.com', password='password123')
+
+post_1 = Post(title='Blog Post 01', content='Blog Post 01 Content', user_id=user.id)
+post_2 = Post(title='Blog Post 02', content='Blog Post 02 Content', user_id=user.id)
+

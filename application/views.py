@@ -1,9 +1,8 @@
-from flask import Flask, render_template, flash, redirect, url_for
-from decouple import config
-from .forms import SignUpForm, LogInForm
+from flask import render_template, flash, redirect, url_for
+from application.forms import SignUpForm, LogInForm
+from .models import User, Post
+from flask import current_app as app
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = config('SECRET_KEY')
 
 posts = [
     {
@@ -52,7 +51,3 @@ def login():
             flash("Login unsuccessful. Please check username and password.", "danger")
 
     return render_template("login.html", form=form)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
