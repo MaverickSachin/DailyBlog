@@ -11,11 +11,11 @@
     {% block stylesheet %}
     {% endblock stylesheet %}
 
-    <title>
-        {% block title %}
-          Daily Blog
-        {% endblock title %}
-    </title>
+    {% if title %}
+        <title>Daily Blog - {{ title }}</title>
+    {% else %}
+        <title>Daily Blog</title>
+    {% endif %}
   </head>
   <body>
     <header class="site-header">
@@ -41,8 +41,17 @@
 
             <div class="navbar-nav">
 
-              <a class="nar-item nav-link" href="{{ url_for('login') }}">Log In</a>
-              <a class="nav-item nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+              {% if current_user.is_authenticated %}
+
+                <a class="nar-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nar-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+
+              {% else %}
+
+                <a class="nar-item nav-link" href="{{ url_for('login') }}">Log In</a>
+                <a class="nav-item nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+
+              {% endif %}
 
             </div>
 

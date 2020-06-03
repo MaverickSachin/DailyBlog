@@ -1,7 +1,5 @@
 """App entry point"""
-from application import create_app
-
-app = create_app()
+from application import app
 
 if __name__ == "__main__":
     app.run(debug=True)
