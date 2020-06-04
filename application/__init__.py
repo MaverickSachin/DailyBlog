@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_mail import Mail
 
 
 """ Construct the core application"""
@@ -12,9 +13,12 @@ db = SQLAlchemy()
 db.init_app(app=app)
 
 bcrypt = Bcrypt(app=app)
+
 login_manager = LoginManager(app=app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+
+mail = Mail(app=app)
 
 with app.app_context():
     from . import views  # Import routes
