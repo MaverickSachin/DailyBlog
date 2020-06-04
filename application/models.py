@@ -1,7 +1,8 @@
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from application import db, login_manager, app
+from application import db, login_manager
 from flask_login import UserMixin
+from flask import current_app as app
 
 
 @login_manager.user_loader
