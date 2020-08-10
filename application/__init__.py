@@ -31,7 +31,7 @@ def create_app(config_class=Config):
         from application.users.views import users  # Import users blueprint
         from application.main.views import main  # Import main blueprint
         from application.posts.views import posts  # Import posts blueprint
-        from application.errors.handlers import errors  # Import errors blueprint
+        from application.errors.views import errors  # Import errors blueprint
 
         app.register_blueprint(users)
         app.register_blueprint(main)

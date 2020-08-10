@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, abort, Blueprint
 from application.posts.forms import PostForm
-from application.models import Post
+from .models import Post
 from application import db
 from flask_login import current_user, login_required
 
@@ -18,13 +18,13 @@ def create_post():
         flash("Your post has been created!", 'success')
         return redirect(url_for('main.index'))
 
-    return render_template("create_post.html", title="Create Post", form=form, legend="Create Post")
+    return render_template("posts/create_post.html", title="Create Post", form=form, legend="Create Post")
 
 
 @posts.route("/post/<int:post_id>/")
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template("post.html", title=post.title, post=post)
+    return render_template("posts/read_post.html", title=post.title, post=post)
 
 
 @posts.route("/post/<int:post_id>/update/", methods=["GET", "POST"])
@@ -46,7 +46,7 @@ def update_post(post_id):
         form.title.data = post.title
         form.content.data = post.content
 
-    return render_template("create_post.html", title='Update Post', form=form, legend="Update Post")
+    return render_template("posts/create_post.html", title='Update Post', form=form, legend="Update Post")
 
 
 @posts.route("/post/<int:post_id>/delete/", methods=["POST"])

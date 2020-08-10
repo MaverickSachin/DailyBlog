@@ -6,7 +6,8 @@ from application.users.forms import (
     RequestResetForm,
     ResetPasswordForm
 )
-from application.models import User, Post
+from .models import User
+from application.posts.models import Post
 from application import db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from application.users.utils import send_reset_email, save_picture
@@ -28,7 +29,7 @@ def signup():
         db.session.commit()
         flash(f"Your account has been created! You are now able to log in.", 'success')
         return redirect(url_for('users.login'))
-    return render_template("signup.html", title='SignUp', form=form)
+    return render_template("users/signup.html", title='SignUp', form=form)
 
 
 @users.route("/login/", methods=['GET', 'POST'])
@@ -46,7 +47,7 @@ def login():
         else:
             flash("Login unsuccessful. Please check email and password.", "danger")
 
-    return render_template("login.html", title='LogIn', form=form)
+    return render_template("users/login.html", title='LogIn', form=form)
 
 
 @users.route("/logout/")
@@ -74,8 +75,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
 
-    image_file = url_for('static', filename=f'profile_pics/{current_user.image_file}')
-    return render_template("account.html", title="Account", image_file=image_file, form=form)
+    image_file = url_for('static', filename=f'images/profile_pictures/{current_user.image_file}')
+    return render_template("users/account.html", title="Account", image_file=image_file, form=form)
 
 
 @users.route("/user/<string:username>/")
@@ -85,7 +86,7 @@ def user_posts(username):
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=2)
-    return render_template("user_posts.html", user=user, posts=posts)
+    return render_template("users/user_posts.html", user=user, posts=posts)
 
 
 @users.route("/reset_password", methods=["GET", "POST"])
@@ -100,7 +101,7 @@ def reset_request():
         flash("An email has been sent with instructions to reset your password.", "info")
         return redirect(url_for("users.login"))
 
-    return render_template("reset_request.html", title='Reset Password', form=form)
+    return render_template("users/reset_request.html", title='Reset Password', form=form)
 
 
 @users.route("/reset_password/<token>/", methods=["GET", "POST"])
@@ -122,4 +123,4 @@ def reset_token(token):
         flash(f"Your password has been updated! You are now able to log in.", 'success')
         return redirect(url_for('users.login'))
 
-    return render_template("reset_token.html", title="Reset Password", form=form)
+    return render_template("users/reset_token.html", title="Reset Password", form=form)
