@@ -46,10 +46,17 @@ DATABASE_URL="postgresql://<user>:<password>@localhost:5432/<db_name>"
 # .env file content
 
 SECRET_KEY="c91831ff9038a0061609c0889d462d21"
+
 FLASK_APP="run.py"
+
 FLASK_DEBUG=1
+
 FLASK_ENV="development"
+
 SQLALCHEMY_DATABASE_URI="postgresql://<user>:<password>@localhost:5432/<database>"
+
 MAIL_SERVER="smtp.googlemail.com"
+
 EMAIL_USER="<gmail_address>"
+
 EMAIL_PASS="<gmail_password>"
