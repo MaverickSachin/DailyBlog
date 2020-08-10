@@ -39,7 +39,7 @@ Macintosh Terminal:
 
 > flask run
 
-DATABASE_URL="postgresql://<user>:<password>@localhost:5432/<db_name>"
+DATABASE_URL="postgresql://(user):(password)@localhost:5432/(db_name)"
 
 ------------
 
@@ -53,7 +53,7 @@ FLASK_DEBUG=1
 
 FLASK_ENV="development"
 
-SQLALCHEMY_DATABASE_URI="postgresql://<user>:<password>@localhost:5432/<database>"
+SQLALCHEMY_DATABASE_URI="postgresql://(user):(password)@localhost:5432/(database)"
 
 MAIL_SERVER="smtp.googlemail.com"
 
