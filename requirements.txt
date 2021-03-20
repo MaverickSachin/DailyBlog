@@ -18,7 +18,7 @@ flask-wtf==0.14.3         # via -r requirements.txt
 flask==1.1.2              # via -r requirements.txt, flask-bcrypt, flask-login, flask-mail, flask-sqlalchemy, flask-wtf
 idna==2.9                 # via -r requirements.txt, requests
 itsdangerous==1.1.0       # via -r requirements.txt, flask, flask-wtf
-jinja2==2.11.2            # via -r requirements.txt, flask
+jinja2==2.11.3            # via -r requirements.txt, flask
 markupsafe==1.1.1         # via -r requirements.txt, jinja2
 pillow==7.1.2             # via -r requirements.txt
 psycopg2==2.8.5           # via -r requirements.txt
